@@ -224,7 +224,7 @@ public class GraphicsDisplay extends JPanel {
             canvas.drawString(label, (float)(point.getX() + 5.0D), (float)(point.getY() - bounds.getHeight()));
         }
     }
-
+//сетка
     private void paintGrid(Graphics2D canvas) {
         canvas.setStroke(this.gridStroke);
         canvas.setColor(Color.GRAY);
@@ -248,7 +248,7 @@ public class GraphicsDisplay extends JPanel {
                 translateXYtoPoint(this.viewport[1][0], this.viewport[0][1])));
     }
 
-
+    //оси
     private void paintAxis(Graphics2D canvas) {
         canvas.setStroke(this.axisStroke);
         canvas.setColor(Color.BLACK);
@@ -307,6 +307,7 @@ public class GraphicsDisplay extends JPanel {
     }
 
     public class MouseHandler extends MouseAdapter {
+        // обработать событие от щелчка кнопкой мыши
         public void mouseClicked(MouseEvent ev) {
             if (ev.getButton() == 3) {
                 if (GraphicsDisplay.this.undoHistory.size() > 0) {
@@ -318,7 +319,7 @@ public class GraphicsDisplay extends JPanel {
                 GraphicsDisplay.this.repaint();
             }
         }
-
+        // обработать событие нажатия кнопки мыши
         public void mousePressed(MouseEvent ev) {
             if (ev.getButton() != 1)
                 return;
@@ -333,7 +334,7 @@ public class GraphicsDisplay extends JPanel {
                 GraphicsDisplay.this.selectionRect.setFrame(ev.getX(), ev.getY(), 1.0D, 1.0D);
             }
         }
-
+        // обработать событие отпускания кнопки мыши
         public void mouseReleased(MouseEvent ev) {
             if (ev.getButton() != 1)
                 return;
@@ -352,6 +353,7 @@ public class GraphicsDisplay extends JPanel {
     }
 
     public class MouseMotionHandler implements MouseMotionListener {
+        // обработать событие перемещения мыши
         public void mouseMoved(MouseEvent ev) {
             GraphicsDisplay.this.selectedMarker = GraphicsDisplay.this.findSelectedPoint(ev.getX(), ev.getY());
             if (GraphicsDisplay.this.selectedMarker >= 0) {
@@ -361,7 +363,7 @@ public class GraphicsDisplay extends JPanel {
             }
             GraphicsDisplay.this.repaint();
         }
-
+        // обработать событие перетаскивания курсора мыши
         public void mouseDragged(MouseEvent ev) {
             if (GraphicsDisplay.this.changeMode) {
                 double[] currentPoint = GraphicsDisplay.this.translatePointToXY(ev.getX(), ev.getY());
